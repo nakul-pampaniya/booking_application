@@ -2,19 +2,73 @@
 <html>
 <head>
     <title>Book Now</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <h1>Booking Form</h1>
-    <form method="POST" action="/book">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+    <form method="POST" action="/book" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-        <label for="address">Address:</label><br>
-        <input type="text" id="address" name="address" required><br><br>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
 
         <button type="submit">Submit Booking</button>
     </form>
-    <br>
-    <a href="/bookings">View All Bookings</a>
+    <a class="link" href="/bookings">View All Bookings</a>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const address = document.getElementById("address").value.trim();
+
+            if (!name || !address) {
+                alert("Please fill out both name and address.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
